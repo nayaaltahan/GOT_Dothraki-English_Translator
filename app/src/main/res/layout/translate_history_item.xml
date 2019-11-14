@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_english"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/trajan_pro_bold"
+
+        android:paddingTop="3dp"
+        android:paddingBottom="5dp"
+        android:text="english"
+        android:textColor="@color/colorText"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_dothraki"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/trajan_pro_regular"
+
+        android:paddingTop="5dp"
+        android:paddingBottom="2dp"
+        android:text="dothraki"
+        android:textColor="@color/colorText" />
+
+</LinearLayout>
