@@ -24,13 +24,14 @@ public class HistoryTranslateFragment extends Fragment implements HistoryAdapter
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mTranslatesList = getActivity().findViewById(R.id.rv);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.history_translate_fragment, container, false);
+        mTranslatesList = root.findViewById(R.id.rv);
         mTranslatesList.hasFixedSize();
         mTranslatesList.setLayoutManager(new LinearLayoutManager(getContext()));
         mHistoryAdapter = new HistoryAdapter(this, this);
         mTranslatesList.setAdapter(mHistoryAdapter);
+        return root;
 
-        return inflater.inflate(R.layout.history_translate_fragment, container, false);
     }
 
     @Override

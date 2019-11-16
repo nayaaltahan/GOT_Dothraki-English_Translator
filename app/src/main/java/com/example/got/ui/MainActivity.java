@@ -1,23 +1,21 @@
 package com.example.got.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.got.R;
-import com.example.got.ui.main.SectionsPagerAdapter;
+import com.example.got.adapter.SectionsPagerAdapter;
+import com.example.got.adapter.SignInAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button translate_button;
-    private EditText translateEditText;
-    public static final String EXTRA_TRANSLATE = "com.example.got.ui.TRANSLATE_EDIT";
+    SignInAdapter signInAdapter ;
+    private static final int RC_SIGN_IN = 42;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,23 +29,12 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        translate_button = findViewById(R.id.translate_button);
-
-        translate_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.this.translateBtnListener();
-            }
-        });
-
-
+        signInAdapter = new SignInAdapter();
+        if(!signInAdapter.checkIfSignedIn()){
+            startActivityForResult(signInAdapter.getSignInIntent(), RC_SIGN_IN);
+        }
     }
 
 
-    public void translateBtnListener(){
-        Intent intent = new Intent(MainActivity.this, TranslateResultActivity.class);
-        intent.putExtra(EXTRA_TRANSLATE, translateEditText.getText().toString());
-        startActivity(intent);
 
-    }
 }
