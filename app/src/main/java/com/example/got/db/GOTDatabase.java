@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.got.model.Translate;
 
-@Database(entities = {Translate.class}, version = 1)
+@Database(entities = {Translate.class}, version = 1,exportSchema = false)
 public abstract class GOTDatabase extends RoomDatabase {
 
     private static GOTDatabase instance;

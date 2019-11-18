@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/nav_sign_out" />
+        <item
+            android:id="@+id/nav_clear_history"
+            android:icon="@drawable/ic_history"
+            android:title="@string/nav_clear_translation_history" />
+    </group>
+
+</menu>

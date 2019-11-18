@@ -1,8 +1,11 @@
-package com.example.got.ui.main;
+package com.example.got.adapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.example.got.ui.main.HistoryTranslateFragment;
+import com.example.got.ui.main.TranslateFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -26,9 +29,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch(position) {
             case 0:
-                return "Page 1";
+                return "Translate";
             case 1:
-                return "Page 2";
+                return "History";
             default:
                 return null;
         }
