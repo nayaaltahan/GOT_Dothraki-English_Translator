@@ -3,4 +3,16 @@
     <string name="edit_translate_text">Enter Text</string>
     <string name="translate_button_text">Translate</string>
     <string name="english_to_dothraki">English to Dothraki</string>
+    <string name="title_activity_with_navigation_drawer">ActivityWithNavigationDrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="setting">Setting</string>
+    <string name="sign_out">Sign out</string>
+    <string name="not_set">Not set</string>
+    <string name="nav_sign_out">Sign out</string>
+    <string name="nav_clear_translation_history">Clear Translation History</string>
+    <string name="toast_log_out">You are logged out now</string>
+    <string name="toast_clear_translation">Translation History Cleared</string>
+    <string name="share">Share</string>
 </resources>

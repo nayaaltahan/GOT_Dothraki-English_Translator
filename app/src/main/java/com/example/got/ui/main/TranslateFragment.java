@@ -25,6 +25,7 @@ public class TranslateFragment extends Fragment {
     private Button translate_button;
     public static final String EXTRA_TRANSLATE = "com.example.got.ui.TRANSLATE_EDIT";
     private ViewGroup root;
+    private SharedPreferences prefs;
 
     public static TranslateFragment newInstance() {
         return new TranslateFragment();
@@ -34,6 +35,7 @@ public class TranslateFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        prefs = this.getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         root = (ViewGroup) inflater.inflate(R.layout.translation_fragment, container, false);
         translateEditText = root.findViewById(R.id.editDothraki);
         translate_button = root.findViewById(R.id.translate_button);
@@ -48,10 +50,9 @@ public class TranslateFragment extends Fragment {
     }
 
 
-    @Override
+    /*@Override
     public void onPause() {
         super.onPause();
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("translateText", translateEditText.getText().toString());
         editor.apply();
@@ -60,10 +61,9 @@ public class TranslateFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-        String translateText = prefs.getString("translateText", "default_name");
+        String translateText = prefs.getString("translateText", "");
         translateEditText.setText(translateText);
-    }
+    }*/
 
     public void translateBtnListener(View v){
         Intent intent = new Intent(root.getContext(), TranslateResultActivity.class);
@@ -72,6 +72,8 @@ public class TranslateFragment extends Fragment {
         startActivity(intent);
 
     }
+
+
 
 
 

@@ -11,9 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SignInActivity"></activity>
-        <activity android:name=".ui.TranslateResultActivity" />
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.SignInActivity" />
+        <activity android:name=".ui.TranslateResultActivity"
+            android:parentActivityName="com.example.got.ui.MainActivity"/>
+        <activity
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

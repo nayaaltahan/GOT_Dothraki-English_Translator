@@ -18,14 +18,26 @@ public class DothrakiResponse {
  */
 
 private ContentsResponse contents;
+private ErrorResponse error;
 
 public Translate getTranslate(){
     return new Translate(contents.text,contents.translated);
 }
 
+    public String getError(){
+        return error.message;
+    }
+
+
     private class ContentsResponse {
         private String translated;
         private String text;
+
+    }
+
+    private class ErrorResponse {
+        private String code;
+        private String message;
 
     }
 }

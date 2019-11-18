@@ -10,16 +10,15 @@ import com.example.got.repos.TranslateRepository;
 
 import java.util.List;
 
-public class TranslateFragmentViewModel extends AndroidViewModel {
+public class MainActivityViewModel extends AndroidViewModel {
     private TranslateRepository repository;
 
-    public TranslateFragmentViewModel(Application app) {
+    public MainActivityViewModel(Application app) {
         super(app);
         repository = TranslateRepository.getInstance(app);
     }
 
-    public LiveData<List<Translate>> getHistory() {
-
-        return repository.getHistory();
-}
+    public void clearHistory() {
+        repository.deleteAllTranslates();
+    }
 }

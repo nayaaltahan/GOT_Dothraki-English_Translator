@@ -56,6 +56,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     }
 
+    public int getTranslateId(int count) {
+        return mTranslates.get(count).getId();
+    }
+
     @Override
     public int getItemCount() {
         return mTranslates.size();

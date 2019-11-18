@@ -5,14 +5,15 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.got.db.GOTDatabase;
 import com.example.got.db.TranslateDao;
+import com.example.got.exceptions.TooManyRequestsException;
 import com.example.got.model.Translate;
 import com.example.got.rds.DothrakiApi;
 import com.example.got.rds.DothrakiResponse;
 import com.example.got.rds.ServiceGenerator;
+import com.example.got.ui.UpdateUI;
 
 import java.util.List;
 
@@ -23,9 +24,12 @@ import retrofit2.Response;
 public class TranslateRepository {
     private TranslateDao translateDao;
     private static TranslateRepository instance;
+
     //MutableLiveData
     private LiveData<List<Translate>> translates;
     Translate dothraki = null;
+    String error = null;
+    UpdateUI updateUI;
 
     private TranslateRepository(Application application){
         GOTDatabase database = GOTDatabase.getInstance(application);
@@ -53,6 +57,15 @@ public class TranslateRepository {
     public LiveData<List<Translate>> getHistory() {
 
         return translates;
+    }
+
+    public Translate getTranslateById(int id) {
+        for (int i = 0; i < translates.getValue().size(); i++) {
+            if (translates.getValue().get(i).getId() == id) {
+                return translates.getValue().get(i);
+            }
+        }
+        return null;
     }
 
     private static class InsertTranslateAsync extends AsyncTask<Translate,Void,Void> {
@@ -83,17 +96,17 @@ public class TranslateRepository {
         }
     }
 
-    public Translate translateToDothraki(String text) {
+    public void translateToDothraki(String text) {
         List<Translate> history = translates.getValue();
         for(int i = 0; i<history.size();i++){
             if(history.get(i).getEnglish().trim().toLowerCase().equals(text.trim().toLowerCase())){
-                return history.get(i);
+                updateUiWithTranslate(history.get(i));
             }
         }
-        return getTranslationFromApi(text);
+        getTranslationFromApi(text);
     }
 
-    private Translate getTranslationFromApi(String text){
+    private void getTranslationFromApi(String text) {
         DothrakiApi dothrakiApi = ServiceGenerator.getDothrakiApi();
         Call<DothrakiResponse> call = dothrakiApi.TranslateToDothraki(text);
         call.enqueue(new Callback<DothrakiResponse>() {
@@ -102,14 +115,34 @@ public class TranslateRepository {
                 if (response.code() == 200) {
                     dothraki = response.body().getTranslate();
                     insert(dothraki);
+                    updateUiWithTranslate(dothraki);
+                    dothraki = null;
+                }
+
+                if (response.code() == 429) {
+                    error = response.body().getError();
+                    updateUiWithError(error);
                 }
             }
 
             @Override
             public void onFailure(Call<DothrakiResponse> call, Throwable t) {
-                Log.i("Retrofit", "Something went wrong :(");
+                error = "Something went wrong";
+                updateUiWithError(error);
             }
         });
-        return dothraki;
     }
+
+    public void setUpdateUI(UpdateUI updateUI){
+        this.updateUI = updateUI;
+    }
+
+    private void updateUiWithTranslate(Translate dothraki) {
+        updateUI.updateUiWithTranslate(dothraki);
+    }
+
+    private void updateUiWithError(String error) {
+        updateUI.updateUiWithError(error);
+    }
+
 }

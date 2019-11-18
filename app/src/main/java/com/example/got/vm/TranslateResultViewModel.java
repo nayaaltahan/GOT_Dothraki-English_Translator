@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.got.model.Translate;
 import com.example.got.repos.TranslateRepository;
+import com.example.got.ui.UpdateUI;
 
 import java.util.List;
 
@@ -18,9 +19,16 @@ public class TranslateResultViewModel extends AndroidViewModel {
         repository = TranslateRepository.getInstance(app);
     }
 
-    public Translate translateToDothraki(String text) {
+    public void translateToDothraki(String text) {
+        repository.translateToDothraki(text);
+    }
 
-        return repository.translateToDothraki(text);
+    public Translate getTranslateById(int id){
+        return repository.getTranslateById(id);
+    }
+
+    public void setUpdateUi(UpdateUI updateUi){
+        repository.setUpdateUI(updateUi);
     }
 
 }
