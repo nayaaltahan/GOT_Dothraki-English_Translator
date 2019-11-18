@@ -120,8 +120,9 @@ public class TranslateRepository {
                 }
 
                 if (response.code() == 429) {
-                    error = response.body().getError();
+                    error = "Too many requests";
                     updateUiWithError(error);
+                    error = null;
                 }
             }
 

@@ -14,7 +14,7 @@
         android:background="@color/colorEditText"
 
         android:fontFamily="@font/trajan_regular"
-        android:gravity="top|left"
+        android:gravity="start"
         android:hint="@string/edit_translate_text"
         android:inputType="textMultiLine"
         android:lines="8"
@@ -28,7 +28,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
