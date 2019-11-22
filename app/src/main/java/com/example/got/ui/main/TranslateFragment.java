@@ -25,17 +25,13 @@ public class TranslateFragment extends Fragment {
     private Button translate_button;
     public static final String EXTRA_TRANSLATE = "com.example.got.ui.TRANSLATE_EDIT";
     private ViewGroup root;
-    private SharedPreferences prefs;
-
-    public static TranslateFragment newInstance() {
-        return new TranslateFragment();
-    }
+    //private SharedPreferences prefs;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        prefs = this.getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        //prefs = this.getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         root = (ViewGroup) inflater.inflate(R.layout.translation_fragment, container, false);
         translateEditText = root.findViewById(R.id.editDothraki);
         translate_button = root.findViewById(R.id.translate_button);

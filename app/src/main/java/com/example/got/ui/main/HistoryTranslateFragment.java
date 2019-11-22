@@ -14,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.got.R;
 import com.example.got.adapter.HistoryAdapter;
+import com.example.got.model.Translate;
 import com.example.got.ui.TranslateResultActivity;
+
+import java.util.List;
 
 public class HistoryTranslateFragment extends Fragment implements HistoryAdapter.OnListItemClickListener {
 
@@ -43,5 +46,6 @@ public class HistoryTranslateFragment extends Fragment implements HistoryAdapter
         Log.e("HistoryTranslateFragment", ""+clickedItemIndex+1);
         startActivity(intent);
     }
+
 
 }

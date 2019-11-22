@@ -30,15 +30,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         viewModel = ViewModelProviders.of(fragment).get(HistoryViewModel.class);
         mTranslates = new ArrayList<Translate>();
         viewModel.getHistory().observe(fragment, new Observer<List<Translate>>() {
-                    @Override
-                    public void onChanged(List<Translate> translates) {
-                        mTranslates.clear();
-                        for(Translate translate: translates){
-                            mTranslates.add(translate);
-                        }
-                    }
-                });
-                mOnListItemClickListener = listener;
+            @Override
+            public void onChanged(List<Translate> translates) {
+                mTranslates.clear();
+                for(Translate translate: translates){
+                    mTranslates.add(translate);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+        mOnListItemClickListener = listener;
     }
 
     @NonNull
@@ -49,15 +50,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+    public int getTranslateId(int count) {
+        return mTranslates.get(count).getId();
+    }
+
+
     @Override
     public void onBindViewHolder( ViewHolder viewHolder, int position) {
         viewHolder.english.setText(mTranslates.get(position).getEnglish());
         viewHolder.dothraki.setText(mTranslates.get(position).getDothraki());
 
-    }
-
-    public int getTranslateId(int count) {
-        return mTranslates.get(count).getId();
     }
 
     @Override
